@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
@@ -15,7 +16,10 @@
 		console.log(email, password);
 		try {
 			await loginUser(email, password);
-			toast.success('User signed up successfully', { duration: 3000 });
+			toast.success('User signed in successfully', { duration: 3000 });
+			setTimeout(() => {
+				goto('/home');
+			}, 3000);
 		} catch (error) {
 			if (error instanceof Error) {
 				console.log(error);
@@ -43,4 +47,7 @@
 	<Card.Footer>
 		<Button class="w-full" on:click={handleSignUp}>Sign in</Button>
 	</Card.Footer>
+	<div class="block w-full pb-5 text-center">
+		<a href="/">Don't have an account? Sign up</a>
+	</div>
 </Card.Root>

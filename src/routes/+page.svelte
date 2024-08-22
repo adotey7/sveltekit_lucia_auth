@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
@@ -16,6 +17,10 @@
 		try {
 			await signUserUp(email, password);
 			toast.success('User signed up successfully', { duration: 3000 });
+
+			setTimeout(() => {
+				goto('/home');
+			}, 3000);
 		} catch (error) {
 			if (error instanceof Error) {
 				console.log(error);
